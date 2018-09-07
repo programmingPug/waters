@@ -1,0 +1,13 @@
+<div *ngFor="let alert of alerts" class="{{ cssClass(alert) }} alert-dismissable" >
+	<mat-card  class="lrCard">
+		<div>
+			<p class="alignleft"><b>{{alert.message}}</b></p>
+			<p class="alignright">
+				<a class="close" (click)="removeAlert(alert)">
+					<mat-icon class="alert-icon" fontSet="fa" fontIcon="fa-times" ></mat-icon>
+				</a>
+			</p>
+			<div style="clear: both;"></div>
+		</div>
+	</mat-card>
+</div>
