@@ -1,8 +1,42 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-export class InMemoryDataService2 implements InMemoryDbService {
+export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const nasdaq = [
+
+  let users = [
+      {
+        id: 11,
+        firstName: "Christopher",
+        lastName: "Koch",
+        role: "B5",
+        email: "ckochXlazypug.net",
+        userName: "ckoch",
+        password: "test",
+        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXp5cHVnLm5ldCIsImlhdCI6MTUzNjE4NzUwMSwiZXhwIjoxNTY3NzIzNTAxLCJhdWQiOiJ3d3cubGF6eXB1Zy5uZXQiLCJzdWIiOiJja29jaEBsYXp5cHVnLm5ldCIsImZpcnN0TmFtZSI6IkNocmlzdG9waGVyIiwiTGFzdE5hbWUiOiJLb2NoIiwiZW1haWwiOiJja29jaEBsYXp5cHVnLm5ldCIsInJvbGUiOiJCNSIsImlkIjoiMTEifQ.UcIStKvZdYqWKho1I1tVta8zNLQD7KpP4n8l93wStEI"
+      },
+      {
+        id: 12,
+        firstName: "Rebecca",
+        lastName: "Koch",
+        role: "B4",
+        email: "rkoch@lazypug.net",
+        userName: "rkoch",
+        password: "test2",
+        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXp5cHVnLm5ldCIsImlhdCI6MTUzNjE4NzUwMSwiZXhwIjoxNTY3NzIzNTAxLCJhdWQiOiJ3d3cubGF6eXB1Zy5uZXQiLCJzdWIiOiJya29jaEBsYXp5cHVnLm5ldCIsImZpcnN0TmFtZSI6IlJlYmVjY2EiLCJMYXN0TmFtZSI6IktvY2giLCJlbWFpbCI6InJrb2NoQGxhenlwdWcubmV0Iiwicm9sZSI6IkI0IiwiaWQiOiIxMiJ9.baXMibtXAEUbbm1Nf4VP0yefFovR2-QHpRqzLQO7CtM"
+      },
+      {
+        id: 13,
+        firstName: "Henry",
+        lastName: "Koch",
+        role: "B2",
+        email: "hkoch@lazypug.net",
+        userName: "hkoch",
+        password: "test3",
+        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsYXp5cHVnLm5ldCIsImlhdCI6MTUzNjE4NzUwMSwiZXhwIjoxNTY3NzIzNTAxLCJhdWQiOiJ3d3cubGF6eXB1Zy5uZXQiLCJzdWIiOiJoa29jaEBsYXp5cHVnLm5ldCIsImZpcnN0TmFtZSI6IkhlbnJ5IiwiTGFzdE5hbWUiOiJLb2NoIiwiZW1haWwiOiJoa29jaEBsYXp5cHVnLm5ldCIsInJvbGUiOiJCMiIsImlkIjoiMTMifQ.Y6g9h4knKoawHmQEqT9A0UGOwYr4fKENyJ1O3MP6H5g"
+      }
+  ];
+
+    let nasdaq = [
        {
     "Symbol": "PIH",
     "Name": "1347 Property Insurance Holdings, Inc."
@@ -13564,6 +13598,7 @@ export class InMemoryDataService2 implements InMemoryDbService {
     "Name": "Zynga Inc."
   }
     ];
-    return {nasdaq};
+
+    return {nasdaq, users};
   }
 }

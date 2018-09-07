@@ -1,3 +1,28 @@
-<p>
-  search-view works!
-</p>
+<div class="lrContainer">
+	<mat-card class="lrCard">
+		<mat-card-header>
+			<mat-card-title>
+				<h2>Search IPO's</h2>
+			</mat-card-title>
+		</mat-card-header>
+		<mat-form-field class="fullWidth">
+			<input matInput placeholder="Company"
+				[id]="'company'"
+				[type]="'text'"
+				[name]="'company'"
+				(keyup)="searchCompany($event.target.value)">
+		</mat-form-field>
+		
+		<mat-divider></mat-divider>
+
+		<div>
+			<mat-list>
+				<mat-list-item *ngFor="let company of searchResults" (click)="onSelect(company.Symbol)"> {{company.Name}} </mat-list-item>
+			</mat-list>
+		</div>
+
+
+
+	</mat-card>
+
+</div>

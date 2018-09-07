@@ -10,8 +10,8 @@ import { StockViewComponent } from './stock-view/stock-view.component';
 
 import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './_mockdata/mock-data-users';
-import { InMemoryDataService2 }  from './_mockdata/mock-data-nasdaq';
+//import { InMemoryDataService }  from './_mockdata/mock-data-users';
+import { InMemoryDataService }  from './_mockdata/mock-data-nasdaq';
 
 import { AlertComponent } from './_helpers/alert.component';
 import { AlertService } from './_services/alert.service';
@@ -26,6 +26,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from "@angular/material";
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -43,10 +45,7 @@ import { MatIconRegistry } from "@angular/material";
     AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService2, { dataEncapsulation: false }
+      InMemoryDataService
     ),
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -54,7 +53,9 @@ import { MatIconRegistry } from "@angular/material";
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [
     AlertService,
