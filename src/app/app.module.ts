@@ -9,8 +9,8 @@ import { SearchViewComponent } from './search-view/search-view.component';
 import { StockViewComponent } from './stock-view/stock-view.component';
 
 import { HttpClientModule }    from '@angular/common/http';
+import { JsonpModule } from '@angular/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-//import { InMemoryDataService }  from './_mockdata/mock-data-users';
 import { InMemoryDataService }  from './_mockdata/mock-data-nasdaq';
 
 import { AlertComponent } from './_helpers/alert.component';
@@ -55,7 +55,8 @@ import {MatListModule} from '@angular/material/list';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    JsonpModule 
   ],
   providers: [
     AlertService,

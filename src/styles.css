@@ -31,3 +31,10 @@
 .alert-danger mat-card{
 	background-color: pink;
 }
+
+.ipoMiniLogo{
+	width:35px;
+	height: auto;
+	border-radius: 50%;
+	text-align: right;
+}

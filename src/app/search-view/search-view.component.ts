@@ -25,7 +25,8 @@ export class SearchViewComponent implements OnInit {
 	}
 
 	searchCompany( searchData ){
-		this.nasdaqSearchService.query( searchData )
+		if( searchData.length > 3 ){
+			this.nasdaqSearchService.query( searchData )
 			.subscribe(
 				data => {
 					if( Object.keys(data).length === 0 ){
@@ -46,6 +47,7 @@ export class SearchViewComponent implements OnInit {
 					//console.log(error)
 					//this.alertService.error( "Bad username or password" );
 				});
+		}
 	}
 
 	getLogos( companySearchResults ){
@@ -60,12 +62,12 @@ export class SearchViewComponent implements OnInit {
 						//console.log(data[0].userName);
 						//localStorage.setItem('currentUser', JSON.stringify(data[0]));
 						//this.router.navigate(["home"]);
-						
+						console.log("good?");
 						console.log( data );
 						//this.searchResults = data;
 						//this.companySearchResults( data );
-						//this.searchResults = companySearchResults;
-						//this.searchResultLogos = data;
+						this.searchResults = companySearchResults;
+						this.searchResultLogos = data;
 					}
 				},
 				error => {

@@ -17,7 +17,13 @@
 
 		<div>
 			<mat-list>
-				<mat-list-item *ngFor="let company of searchResults" (click)="onSelect(company.Symbol)"> {{company.Name}} </mat-list-item>
+				<mat-list-item *ngFor="let company of searchResults" (click)="onSelect(company.Symbol)">
+					<div class="fullWidth">
+						<p class="alignleft">{{company.Name}}</p>
+						<img class="ipoMiniLogo alignright" src="{{searchResultLogos[company.Symbol].logo.url}}">
+						<div style="clear: both;"></div>
+					</div>
+				</mat-list-item>
 			</mat-list>
 		</div>
 
