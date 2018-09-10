@@ -36,6 +36,15 @@ export class InMemoryDataService implements InMemoryDbService {
       }
   ];
 
+  let watching = [
+    {
+      symbol: "MSFT"
+    },
+    {
+      symbol: "GOOGL"
+    }
+  ];
+
     let nasdaq = [
        {
     "Symbol": "PIH",
@@ -13599,6 +13608,6 @@ export class InMemoryDataService implements InMemoryDbService {
   }
     ];
 
-    return {nasdaq, users};
+    return {nasdaq, users, watching};
   }
 }

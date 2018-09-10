@@ -49,4 +49,24 @@ export class StockService {
 				return chartData["_body"];
 			});
 	}
+
+	getIpoBulkData( symbols ){
+		var symbolsComma = "";
+		var commaCheck = false;
+
+		for( var symbol in symbols ){
+			if( commaCheck ){
+				symbolsComma += ",";
+			}
+			commaCheck = true;
+			symbolsComma += symbols[symbol];
+	
+		}
+		
+		const url = "https://api.iextrading.com/1.0/stock/market/batch?symbols=" + symbolsComma + "&types=quote,logo&callback=JSONP_CALLBACK";
+		return this.jsonp.request(url)
+		    .map(logos => {
+				return logos["_body"];
+            });
+	}
 }
