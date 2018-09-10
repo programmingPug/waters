@@ -1,0 +1,29 @@
+@media only screen and (min-width : 600px){
+    #watcherCard{
+        width: 400px;
+    }
+}
+
+@media only screen and (min-width : 800px){
+    #watcherCard{
+        width: 600px;
+    }
+}
+
+@media only screen and (min-width : 1000px) {
+    #watcherCard{
+        width: 900px;
+    }
+}
+
+@media only screen and (min-width : 1200px) {
+    #watcherCard{
+        width: 1100px;
+    }
+}
+
+@media only screen and (min-width : 1300px) {
+    #watcherCard{
+        width: 1200px;
+    }
+}

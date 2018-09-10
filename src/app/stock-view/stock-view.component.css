@@ -1,0 +1,12 @@
+.cardContainer{
+	margin-top: 5px;
+	height:450px;
+}
+
+#stockCard{
+	height:450px;
+}
+
+.chartContainer canvas{
+	width:800px ;
+}

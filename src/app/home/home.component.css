@@ -1,0 +1,30 @@
+.flexContainer{
+	width:100%;
+	height:550px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.subContainerS1{
+	height:500px;
+	width:450px;
+	margin: 5px 10px;
+}
+
+.subContainerS2{
+	height:500px;
+	width:800px;
+	margin: 5px 10px;
+}
+
+.watcherViewContainer{
+	margin-top:15px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}

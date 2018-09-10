@@ -41,4 +41,12 @@ export class StockService {
             });
 
 	}
+
+	getCharByTime( symbol, timeFrame ){
+		const url2 = "https://api.iextrading.com/1.0/stock/" + symbol + "/chart/1m?callback=JSONP_CALLBACK";
+		return this.jsonp.request(url2)
+			.map(chartData => {
+				return chartData["_body"];
+			});
+	}
 }

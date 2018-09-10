@@ -26,8 +26,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from "@angular/material";
-import {MatDividerModule} from '@angular/material/divider';
-import {MatListModule} from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { WatcherViewComponent } from './watcher-view/watcher-view.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import {MatListModule} from '@angular/material/list';
     AlertComponent,
     SearchViewComponent,
     StockViewComponent,
+    WatcherViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,7 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule,
     MatDividerModule,
     MatListModule,
-    JsonpModule 
+    JsonpModule
   ],
   providers: [
     AlertService,

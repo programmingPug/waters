@@ -1,3 +1,12 @@
-<p (change)='onChange($event)' >
-?
-</p>
+<div class="cardContainer">
+	<mat-card id="stockCard">
+		<mat-card-header>
+			<mat-card-title>
+				<h2>Graph View</h2>
+			</mat-card-title>
+		</mat-card-header>
+		<div class="chartContainer">
+			<canvas #chartView >{{chart}}</canvas>
+		</div>
+	</mat-card>
+</div>

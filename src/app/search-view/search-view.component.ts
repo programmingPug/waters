@@ -3,6 +3,7 @@ import { Component, OnInit, HostListener  } from '@angular/core';
 import { EmitcomService } from '../_services/emitcom.service';
 import { NasdaqSearchService } from '../_services/nasdaq-search.service';
 import { StockService } from '../_services/stock.service';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-search-view',
@@ -17,7 +18,8 @@ export class SearchViewComponent implements OnInit {
   constructor(
   		private emitcomService: EmitcomService,
   		private nasdaqSearchService: NasdaqSearchService,
-  		private stockService: StockService
+  		private stockService: StockService,
+  		private alertService: AlertService
   	) { }
 
 	ngOnInit() {
@@ -25,28 +27,30 @@ export class SearchViewComponent implements OnInit {
 	}
 
 	searchCompany( searchData ){
-		if( searchData.length > 3 ){
+		/* clear out IPO list at each key press */
+		this.clearIpoList();
+		this.alertService.clear();
+
+		if( searchData.length >= 3 ){
 			this.nasdaqSearchService.query( searchData )
 			.subscribe(
 				data => {
 					if( Object.keys(data).length === 0 ){
-						//this.alertService.error( "Bad username or password" );
+						/* We only need this here becasue i'm not great at regular expressions */
+						this.alertService.error( "No IPO's Found" );
 					}else{
-						//console.log(data[0].userName);
-						//localStorage.setItem('currentUser', JSON.stringify(data[0]));
-						//this.router.navigate(["home"]);
-						
-						//console.log( data );
-						//this.searchResults = data;
 						if( data.length > 0 ){
-							this.getLogos( data );
+							/* Data found in mock DB slice out the first six results and call method for logos. */
+							this.getLogos( data.slice(0, 6) );
 						}
 					}
 				},
 				error => {
-					//console.log(error)
-					//this.alertService.error( "Bad username or password" );
+					/* 404 not found in mock DB send alert to user. */
+					this.alertService.error( "No IPO's Found" );
 				});
+		}else if( searchData.length === 0 ){
+			this.emitcomService.destroyChart();
 		}
 	}
 
@@ -56,38 +60,31 @@ export class SearchViewComponent implements OnInit {
 			.subscribe(
 				data => {
 					if( Object.keys(data).length === 0 ){
-						//this.alertService.error( "Bad username or password" );
-						console.log("FAIL1");
+						/* We only have to check for the object key becasue i'm not great with regex... */
+						/* If nothing is found do nothing */
 					}else{
-						//console.log(data[0].userName);
-						//localStorage.setItem('currentUser', JSON.stringify(data[0]));
-						//this.router.navigate(["home"]);
-						console.log("good?");
-						console.log( data );
-						//this.searchResults = data;
-						//this.companySearchResults( data );
+						/* Now that we have the search results and company IPO logos to match we can set the data and let the template take over. */
 						this.searchResults = companySearchResults;
 						this.searchResultLogos = data;
 					}
 				},
 				error => {
-					console.log("FAIL2");
-					console.log(error)
-					//this.alertService.error( "Bad username or password" );
+					/* in this circumstance we don't care about error as the logo return is static from the service. We will find another way to validate images. */
 				});
 
 	}
 
+	imgError( event ){
+		event.target.src = "http://www.lazypug.net/img/pug.jpg";
+	}
+
 	onSelect( selectedSymbol ){
+		/* On user click call sendData method on the service to emit an event to be picked up on the stock-view componet */
 		this.emitcomService.sendData( selectedSymbol );
 	}
 
-
-	/*
-	@HostListener('click')
-		click() {
-			this.emitcomService.sendData( 42 );
-		}
-	*/
+	clearIpoList(){
+		this.searchResults = null;
+	}
 
 }

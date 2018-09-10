@@ -1,5 +1,5 @@
-<div class="lrContainer">
-	<mat-card class="lrCard">
+<div class="cardContainer">
+	<mat-card id="searchCard">
 		<mat-card-header>
 			<mat-card-title>
 				<h2>Search IPO's</h2>
@@ -16,19 +16,16 @@
 		<mat-divider></mat-divider>
 
 		<div>
-			<mat-list>
-				<mat-list-item *ngFor="let company of searchResults" (click)="onSelect(company.Symbol)">
-					<div class="fullWidth">
-						<p class="alignleft">{{company.Name}}</p>
-						<img class="ipoMiniLogo alignright" src="{{searchResultLogos[company.Symbol].logo.url}}">
-						<div style="clear: both;"></div>
+			<mat-nav-list>
+				<mat-list-item *ngFor="let company of searchResults">
+					<div class="ipoContainer">
+						<img class="ipoMiniLogo" src="{{searchResultLogos[company.Symbol].logo.url}}"  (error)="imgError($event)">
+						<span (click)="onSelect(company.Symbol)" >{{company.Name}}</span>
+						<div class="spacer"></div>
+						<mat-icon class="addWatchListIcon" fontSet="fa" fontIcon="fa-plus-circle" ></mat-icon>
 					</div>
 				</mat-list-item>
-			</mat-list>
+			</mat-nav-list>
 		</div>
-
-
-
 	</mat-card>
-
 </div>
