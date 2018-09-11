@@ -1,23 +1,26 @@
 <div class="cardContainer">
 	<mat-card id="searchCard">
 		<mat-card-header class="fullWidth">
+			
 			<div class="ipoContainer">
 				<mat-card-title>
 					<h2>Search IPO's</h2>
 				</mat-card-title>
-					<div class="spacer"></div>
-
-					<button mat-icon-button [matMenuTriggerFor]="menu">
-							<mat-icon class="addWatchListIcon" fontSet="fa" fontIcon="fa-bars" ></mat-icon>
-						  </button>
+				
+				<div class="spacer"></div>
+				
+				<button mat-icon-button [matMenuTriggerFor]="menu">
+					<mat-icon class="addWatchListIcon" fontSet="fa" fontIcon="fa-bars" ></mat-icon>
+				</button>
 
 				<mat-menu #menu="matMenu">
-				  <button mat-menu-item>Item 1</button>
-				  <button mat-menu-item>Item 2</button>
+					<button mat-menu-item [routerLink]="['/about']">About</button>
+					<button mat-menu-item (click)="logout();" >Logout</button>
 				</mat-menu>
-					</div>
+			</div>
 					
 		</mat-card-header>
+
 		<mat-form-field class="fullWidth">
 			<input matInput placeholder="Company"
 				[id]="'company'"
@@ -28,7 +31,7 @@
 		
 		<mat-divider></mat-divider>
 
-		<div>
+		<div class="listContainer" >
 			<mat-nav-list>
 				<mat-list-item *ngFor="let company of searchResults">
 					<div class="ipoContainer">
@@ -40,5 +43,6 @@
 				</mat-list-item>
 			</mat-nav-list>
 		</div>
+		
 	</mat-card>
 </div>

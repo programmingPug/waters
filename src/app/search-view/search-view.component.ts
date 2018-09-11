@@ -1,10 +1,10 @@
 import { Component, OnInit, HostListener  } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { EmitcomService } from '../_services/emitcom.service';
 import { NasdaqSearchService } from '../_services/nasdaq-search.service';
 import { StockService } from '../_services/stock.service';
 import { WatcherService } from '../_services/watcher.service';
-import { AlertService } from '../_services/alert.service';
+
 
 @Component({
   selector: 'app-search-view',
@@ -20,8 +20,8 @@ export class SearchViewComponent implements OnInit {
   		private emitcomService: EmitcomService,
   		private nasdaqSearchService: NasdaqSearchService,
   		private stockService: StockService,
-		private alertService: AlertService,
-		private watcherService: WatcherService
+		private watcherService: WatcherService,
+		private router: Router
   	) { }
 
 	ngOnInit() {
@@ -31,15 +31,13 @@ export class SearchViewComponent implements OnInit {
 	searchCompany( searchData ){
 		/* clear out IPO list at each key press */
 		this.clearIpoList();
-		this.alertService.clear();
-
+		
 		if( searchData.length >= 3 ){
 			this.nasdaqSearchService.query( searchData )
 			.subscribe(
 				data => {
 					if( Object.keys(data).length === 0 ){
 						/* We only need this here becasue i'm not great at regular expressions */
-						this.alertService.error( "No IPO's Found" );
 					}else{
 						if( data.length > 0 ){
 							/* Data found in mock DB slice out the first six results and call method for logos. */
@@ -48,10 +46,10 @@ export class SearchViewComponent implements OnInit {
 					}
 				},
 				error => {
-					/* 404 not found in mock DB send alert to user. */
-					this.alertService.error( "No IPO's Found" );
+					/* 404 not found in mock DB. */
 				});
 		}else if( searchData.length === 0 ){
+			/* Emit event to clear chart when search bar is empty*/
 			this.emitcomService.destroyChart();
 		}
 	}
@@ -71,11 +69,12 @@ export class SearchViewComponent implements OnInit {
 					}
 				},
 				error => {
-					/* in this circumstance we don't care about error as the logo return is static from the service. We will find another way to validate images. */
+					/* in this circumstance we don't care about error as the logo return is static from the service. We have another way to validate images. */
 				});
 
 	}
 
+	/* Move to helper class? */
 	imgError( event ){
 		event.target.src = "http://www.lazypug.net/img/pug.jpg";
 	}
@@ -89,25 +88,20 @@ export class SearchViewComponent implements OnInit {
 		this.watcherService.addWatching( symbol )
 			.subscribe(
 				data => {
-					if( Object.keys(data).length === 0 ){
-						/* We only have to check for the object key becasue i'm not great with regex... */
-						/* If nothing is found do nothing */
-					}else{
-						/* Now that we have the search results and company IPO logos to match we can set the data and let the template take over. */
-						//this.searchResults = companySearchResults;
-						//this.searchResultLogos = data;
-						console.log( data )
-						this.emitcomService.updateWatcher();
-					}
+					/* send update to Watching componet to refresh list */
+					this.emitcomService.updateWatcher();
 				},
 				error => {
-					console.log( error );
-					/* in this circumstance we don't care about error as the logo return is static from the service. We will find another way to validate images. */
+					/* We could alert the user something went south but as this is a mock DB it won't fail :/ */
 				});
 	}
 
 	clearIpoList(){
 		this.searchResults = null;
+	}
+
+	logout(){
+		this.router.navigate(["login"]);
 	}
 
 }

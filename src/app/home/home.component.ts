@@ -11,6 +11,9 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    /* So much more can be done here however I'm really just using the home component as a shell/container for the others to live within. */
+
   }
 
 }

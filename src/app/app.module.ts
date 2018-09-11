@@ -13,8 +13,7 @@ import { JsonpModule } from '@angular/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './_mockdata/mock-data-nasdaq';
 
-import { AlertComponent } from './_helpers/alert.component';
-import { AlertService } from './_services/alert.service';
+
 import { EmitcomService } from './_services/emitcom.service';
 import { AuthGuard } from './_guards/auth.guard';
 
@@ -30,7 +29,8 @@ import { MatIconRegistry } from "@angular/material";
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { WatcherViewComponent } from './watcher-view/watcher-view.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -39,7 +39,6 @@ import {MatMenuModule} from '@angular/material/menu';
     LoginComponent,
     HomeComponent,
     UserAdminComponent,
-    AlertComponent,
     SearchViewComponent,
     StockViewComponent,
     WatcherViewComponent,
@@ -61,10 +60,11 @@ import {MatMenuModule} from '@angular/material/menu';
     MatDividerModule,
     MatListModule,
     JsonpModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [
-    AlertService,
+    
     EmitcomService,
     MatIconRegistry,
     AuthGuard

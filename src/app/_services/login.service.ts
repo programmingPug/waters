@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
-
 import { User } from '../_classes/user';
 
 @Injectable({
@@ -12,6 +9,7 @@ import { User } from '../_classes/user';
 
 export class LoginService {
 
+	/* URL to the mock DB to be intercepted by the web-api in memory data service */
 	private loginUrl = "api/users";
 
 	constructor(
@@ -19,7 +17,9 @@ export class LoginService {
 	) { }
 
 	login(userData : any) {
+		/* Look at that god like RegEX... We got a ^ AND a ?. /s */
 		const url = this.loginUrl + '/?userName=^' + userData.userName + '$&password=^' + userData.password + '$' ;
+		/* Run the request expecting a user class back */
 		return this.http.get<User>(url)
 		    .map(user => {
 				return user;
