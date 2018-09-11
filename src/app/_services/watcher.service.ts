@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import 'rxjs/add/operator/map';
 
 @Injectable({
@@ -8,9 +7,9 @@ import 'rxjs/add/operator/map';
 })
 
 
-
 export class WatcherService {
 
+	/* URL to the mock DB to be intercepted by the web-api in memory data service */
   private apiUrl = "api/watching/";
 
   constructor(
@@ -18,7 +17,7 @@ export class WatcherService {
 
   ) { }
 
-
+/* Simple method to return all data within the mock DB */
   getWatching() {
     const url = this.apiUrl
     return this.http.get<any>(url)
@@ -27,6 +26,7 @@ export class WatcherService {
       });
   }
 
+  /* Add to Mock DB, keep in mind this is only going to work with the current instince */
   addWatching(symbol) {
     let newWatchingSymbol = {
       symbol: symbol
@@ -43,6 +43,7 @@ export class WatcherService {
 
   }
 
+  /* Remove from Mock DB, keep in mind this is only going to work with the current instince */
   removeFromWatching(id) {
     let apiUrl = "api/watching/" + id;
     const httpOptions = {

@@ -12,6 +12,8 @@ const httpOptions = {
 })
 export class StockService {
 
+	private baseUrl = "https://api.iextrading.com/1.0/stock/"; 
+
 	constructor(
 		private http: HttpClient,
 		private jsonp: Jsonp
@@ -19,6 +21,7 @@ export class StockService {
 
 	getLogos(symbols) {
 
+		/* Before we can get the logos we need to turn the data into comma delimited string */
 		var symbolsComma = "";
 		var commaCheck = false;
 
@@ -31,23 +34,33 @@ export class StockService {
 
 		}
 
-		const url = "https://api.iextrading.com/1.0/stock/market/batch?symbols=" + symbolsComma + "&types=logo&callback=JSONP_CALLBACK";
+		/*
+
+		As we are accessing resources from a 3rd party it is best to use padding with the request
+		...that and it's required by the API
+		
+		*/
+		const url = this.baseUrl + "market/batch?symbols=" + symbolsComma + "&types=logo&callback=JSONP_CALLBACK";
 		return this.jsonp.request(url)
 			.map(logos => {
+				/* return just the responce body we don't need anything else */
 				return logos["_body"];
 			});
 
 	}
 
 	getCharByTime(symbol, timeFrame) {
-		const url2 = "https://api.iextrading.com/1.0/stock/" + symbol + "/chart/1m?callback=JSONP_CALLBACK";
-		return this.jsonp.request(url2)
+		const url = this.baseUrl + symbol + "/chart/1m?callback=JSONP_CALLBACK";
+		return this.jsonp.request(url)
 			.map(chartData => {
+				/* return just the responce body we don't need anything else */
 				return chartData["_body"];
 			});
 	}
 
 	getIpoBulkData(symbols) {
+		
+		/* Before we can get the logos we need to turn the data into comma delimited string */
 		var symbolsComma = "";
 		var commaCheck = false;
 
@@ -60,9 +73,10 @@ export class StockService {
 
 		}
 
-		const url = "https://api.iextrading.com/1.0/stock/market/batch?symbols=" + symbolsComma + "&types=quote,logo&callback=JSONP_CALLBACK";
+		const url = this.baseUrl + "market/batch?symbols=" + symbolsComma + "&types=quote,logo&callback=JSONP_CALLBACK";
 		return this.jsonp.request(url)
 			.map(logos => {
+				/* return just the responce body we don't need anything else */
 				return logos["_body"];
 			});
 	}
