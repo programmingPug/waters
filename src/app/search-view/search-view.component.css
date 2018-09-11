@@ -32,3 +32,12 @@
 	align-items:center;
 	color: #018786;
 }
+
+.card-header{
+	font-size: 21px;
+	font-weight: 700;
+}
+
+.mat-card-title{
+	margin: 0px;
+}

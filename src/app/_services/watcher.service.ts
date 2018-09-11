@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class WatcherService {
   
   private apiUrl = "api/watching/";
@@ -22,7 +25,36 @@ export class WatcherService {
 		    .map(data => {
 				return data;
             });
-	}
+  }
+  
+  addWatching( symbol ){
+    let newWatchingSymbol = {
+      symbol: symbol
+    }
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.post<any>(this.apiUrl, newWatchingSymbol, httpOptions )
+		    .map(data => {
+				return data;
+            });
+
+  }
+
+  removeFromWatching( id ){
+    let apiUrl = "api/watching/" + id;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    
+    return this.http.delete<any>(apiUrl, httpOptions )
+		    .map(data => {
+				return data;
+            });
+            
+  }
 
 }
 

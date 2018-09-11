@@ -22,6 +22,13 @@ export class WatcherViewComponent implements OnInit {
   ngOnInit() {
 
     this.getwatcherList();
+
+    this.emitcomService.change.subscribe(data => {
+      if( data.type == "action" && data.data == "updateWatcher" ){
+        this.getwatcherList();
+      }
+      
+    });
   }
 
   getwatcherList(  ){
@@ -38,7 +45,7 @@ export class WatcherViewComponent implements OnInit {
             //this.searchResultLogos = data;
             console.log( data )
             let symbols = data.map(data => data.symbol);
-            this.getIpoBulkData(symbols);
+            this.getIpoBulkData(symbols, data);
             console.log( symbols )
 
 					}
@@ -49,7 +56,7 @@ export class WatcherViewComponent implements OnInit {
 
   }
   
-  getIpoBulkData( symbols ){
+  getIpoBulkData( symbols, rawData ){
     this.stockService.getIpoBulkData( symbols  )
     .subscribe(
       data => {
@@ -62,7 +69,8 @@ export class WatcherViewComponent implements OnInit {
           //this.searchResultLogos = data;
           console.log( data )
           this.watchingIpos = data;
-          this.watchingSymbols = symbols;
+          this.watchingSymbols = rawData;
+          console.log( symbols )
           //let symbols = data.map(data => data.symbol);
           //this.ipoBulkData(symbols);
 
@@ -72,5 +80,26 @@ export class WatcherViewComponent implements OnInit {
         console.log( "error" );
       });
   }
+
+  imgError( event ){
+		event.target.src = "http://www.lazypug.net/img/pug.jpg";
+  }
+
+  removeFromWatching( id ){
+    
+		this.watcherService.removeFromWatching( id )
+    .subscribe(
+      data => {
+        this.getwatcherList();
+      },
+      error => {
+        console.log( "error" );
+      });
+  }
+  
+	onSelect( selectedSymbol ){
+		/* On user click call sendData method on the service to emit an event to be picked up on the stock-view componet */
+  this.emitcomService.sendData( selectedSymbol );
+	}
 
 }

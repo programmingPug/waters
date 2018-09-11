@@ -21,10 +21,10 @@ export class EmitcomService {
 		this.change.emit( sendData );
 	}
 
-	addToWatcher( data: string ){
+	updateWatcher( ){
 		let sendData ={
-			type: "watcher",
-			data: data
+			type: "action",
+			data: "updateWatcher"
 		};
 		this.change.emit( sendData );
 	}

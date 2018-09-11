@@ -1,9 +1,22 @@
 <div class="cardContainer">
 	<mat-card id="searchCard">
-		<mat-card-header>
-			<mat-card-title>
-				<h2>Search IPO's</h2>
-			</mat-card-title>
+		<mat-card-header class="fullWidth">
+			<div class="ipoContainer">
+				<mat-card-title>
+					<h2>Search IPO's</h2>
+				</mat-card-title>
+					<div class="spacer"></div>
+
+					<button mat-icon-button [matMenuTriggerFor]="menu">
+							<mat-icon class="addWatchListIcon" fontSet="fa" fontIcon="fa-bars" ></mat-icon>
+						  </button>
+
+				<mat-menu #menu="matMenu">
+				  <button mat-menu-item>Item 1</button>
+				  <button mat-menu-item>Item 2</button>
+				</mat-menu>
+					</div>
+					
 		</mat-card-header>
 		<mat-form-field class="fullWidth">
 			<input matInput placeholder="Company"
@@ -22,7 +35,7 @@
 						<img class="ipoMiniLogo" src="{{searchResultLogos[company.Symbol].logo.url}}"  (error)="imgError($event)">
 						<span (click)="onSelect(company.Symbol)" >{{company.Name}}</span>
 						<div class="spacer"></div>
-						<mat-icon class="addWatchListIcon" fontSet="fa" fontIcon="fa-plus-circle" ></mat-icon>
+						<mat-icon (click)="addToWatching(company.Symbol)" class="addWatchListIcon" fontSet="fa" fontIcon="fa-plus-circle" ></mat-icon>
 					</div>
 				</mat-list-item>
 			</mat-nav-list>

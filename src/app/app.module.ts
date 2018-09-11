@@ -16,6 +16,7 @@ import { InMemoryDataService }  from './_mockdata/mock-data-nasdaq';
 import { AlertComponent } from './_helpers/alert.component';
 import { AlertService } from './_services/alert.service';
 import { EmitcomService } from './_services/emitcom.service';
+import { AuthGuard } from './_guards/auth.guard';
 
 import { AppRoutingModule } from './/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +30,7 @@ import { MatIconRegistry } from "@angular/material";
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { WatcherViewComponent } from './watcher-view/watcher-view.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -58,12 +60,14 @@ import { WatcherViewComponent } from './watcher-view/watcher-view.component';
     MatIconModule,
     MatDividerModule,
     MatListModule,
-    JsonpModule
+    JsonpModule,
+    MatMenuModule
   ],
   providers: [
     AlertService,
     EmitcomService,
-    MatIconRegistry
+    MatIconRegistry,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

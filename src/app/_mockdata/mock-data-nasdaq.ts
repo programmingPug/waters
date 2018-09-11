@@ -38,9 +38,11 @@ export class InMemoryDataService implements InMemoryDbService {
 
   let watching = [
     {
+      id:3,
       symbol: "MSFT"
     },
     {
+      id:4,
       symbol: "GOOGL"
     }
   ];
