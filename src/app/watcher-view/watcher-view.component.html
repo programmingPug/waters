@@ -5,28 +5,22 @@
         <h2>Watch List</h2>
       </mat-card-title>
     </mat-card-header>
+
+    <!-- For the love that is all good and holy take the time to reconstruct the data and switch this to a table! -->
     <div>
-
-
-  <div>
       <mat-nav-list>
-          <mat-list-item *ngFor="let symbol of watchingSymbols">
-            <div class="watchingContainer">
-              <img class="ipoMiniLogo" src="{{watchingIpos[symbol.symbol].logo.url}}"  (error)="imgError($event)">
-              <span class="mockTable" (click)="onSelect(watchingIpos[symbol.symbol].quote.symbol)" >{{watchingIpos[symbol.symbol].quote.companyName}}</span>
-              <span class="mockTable" >Symbol:<br />{{watchingIpos[symbol.symbol].quote.symbol}}</span>
-              <span class="mockTable" >Updated:<br />{{watchingIpos[symbol.symbol].quote.latestTime}}</span>
-              <span class="mockTable" >Day High:<br />{{watchingIpos[symbol.symbol].quote.high | currency }}</span>
-              <span class="mockTable" >Day Low:<br />{{watchingIpos[symbol.symbol].quote.low | currency }}</span>
-              <mat-icon (click)="removeFromWatching(symbol.id)" class="removeFromWatchListIcon" fontSet="fa" fontIcon="fa-minus-circle" ></mat-icon>
-            </div>
-          </mat-list-item>
-        </mat-nav-list>
-      </div>
-
-
-
-
+        <mat-list-item *ngFor="let symbol of watchingSymbols">
+          <div class="watchingContainer">
+            <img class="ipoMiniLogo" src="{{watchingIpos[symbol.symbol].logo.url}}" (error)="imgError($event)">
+            <span class="mockTable" (click)="onSelect(watchingIpos[symbol.symbol].quote.symbol)">{{watchingIpos[symbol.symbol].quote.companyName}}</span>
+            <span class="mockTable">Symbol:<br />{{watchingIpos[symbol.symbol].quote.symbol}}</span>
+            <span class="mockTable">Updated:<br />{{watchingIpos[symbol.symbol].quote.latestTime}}</span>
+            <span class="mockTable">Day High:<br />{{watchingIpos[symbol.symbol].quote.high | currency }}</span>
+            <span class="mockTable">Day Low:<br />{{watchingIpos[symbol.symbol].quote.low | currency }}</span>
+            <mat-icon (click)="removeFromWatching(symbol.id)" class="removeFromWatchListIcon" fontSet="fa" fontIcon="fa-minus-circle"></mat-icon>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
     </div>
 
 

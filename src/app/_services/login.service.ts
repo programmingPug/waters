@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map'
 import { User } from '../_classes/user';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 
 export class LoginService {
@@ -16,14 +16,14 @@ export class LoginService {
 		private http: HttpClient
 	) { }
 
-	login(userData : any) {
+	login(userData: any) {
 		/* Look at that god like RegEX... We got a ^ AND a ?. /s */
-		const url = this.loginUrl + '/?userName=^' + userData.userName + '$&password=^' + userData.password + '$' ;
+		const url = this.loginUrl + '/?userName=^' + userData.userName + '$&password=^' + userData.password + '$';
 		/* Run the request expecting a user class back */
 		return this.http.get<User>(url)
-		    .map(user => {
+			.map(user => {
 				return user;
-            });
+			});
 	}
 
 	logout() {
