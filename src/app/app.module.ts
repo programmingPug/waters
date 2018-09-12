@@ -31,6 +31,7 @@ import { MatListModule } from '@angular/material/list';
 import { WatcherViewComponent } from './watcher-view/watcher-view.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     SearchViewComponent,
     StockViewComponent,
     WatcherViewComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

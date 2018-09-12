@@ -35,10 +35,8 @@ export class StockService {
 		}
 
 		/*
-
 		As we are accessing resources from a 3rd party it is best to use padding with the request
 		...that and it's required by the API
-		
 		*/
 		const url = this.baseUrl + "market/batch?symbols=" + symbolsComma + "&types=logo&callback=JSONP_CALLBACK";
 		return this.jsonp.request(url)
