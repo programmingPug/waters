@@ -12,6 +12,7 @@ export class WatcherViewComponent implements OnInit {
 
   watchingSymbols;
   watchingIpos;
+  hasWatching = false;
 
   constructor(
     private emitcomService: EmitcomService,
@@ -34,13 +35,16 @@ export class WatcherViewComponent implements OnInit {
   }
 
   getwatcherList() {
-
     this.watcherService.getWatching()
       .subscribe(
         data => {
           /* We are going to map out the symbols for the next service call but still pass the raw return so we can use the ID'd later for remvoing items from the DB */
-          let symbols = data.map(data => data.symbol);
-          this.getIpoBulkData(symbols, data);
+          if( data.length > 0 ){
+            let symbols = data.map(data => data.symbol);
+            this.getIpoBulkData(symbols, data);
+          }else{
+            this.hasWatching = false;
+          }
         },
         error => {
           /* A 404 can happen if nothing is returned and thats ok, it would be possible that the watcher DB is empty */
@@ -53,6 +57,7 @@ export class WatcherViewComponent implements OnInit {
       .subscribe(
         data => {
           /* Now that we have data we can pass the rest to the template and do done! */
+          this.hasWatching = true;
           this.watchingIpos = data;
           this.watchingSymbols = rawData;
         },

@@ -29,6 +29,7 @@ export class WatcherService {
   /* Add to Mock DB, keep in mind this is only going to work with the current instince */
   addWatching(symbol) {
     let newWatchingSymbol = {
+      id: "",
       symbol: symbol
     }
 

@@ -8,7 +8,7 @@
 
     <!-- For the love that is all good and holy take the time to reconstruct the data and switch this to a table! -->
     <div>
-      <mat-nav-list>
+      <mat-nav-list *ngIf="hasWatching">
         <mat-list-item *ngFor="let symbol of watchingSymbols">
           <div class="watchingContainer">
             <img class="ipoMiniLogo" src="{{watchingIpos[symbol.symbol].logo.url}}" (error)="imgError($event)">
