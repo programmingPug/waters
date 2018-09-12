@@ -15,6 +15,7 @@ export class SearchViewComponent implements OnInit {
 	
 	searchResults;
 	searchResultLogos;
+	adminUser = false;
 
   constructor(
   		private emitcomService: EmitcomService,
@@ -25,6 +26,11 @@ export class SearchViewComponent implements OnInit {
   	) { }
 
 	ngOnInit() {
+
+		/* TODO: The user needs to be a seprate component or just an object that is validated before the page is loaded. */
+		if (JSON.parse(localStorage.getItem('currentUser')).role == "B5") {
+            this.adminUser = true;
+        }
 
 	}
 

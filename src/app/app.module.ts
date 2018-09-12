@@ -16,6 +16,7 @@ import { InMemoryDataService }  from './_mockdata/mock-data-nasdaq';
 
 import { EmitcomService } from './_services/emitcom.service';
 import { AuthGuard } from './_guards/auth.guard';
+import { RoleGuard } from './_guards/role.guard';
 
 import { AppRoutingModule } from './/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -69,7 +70,8 @@ import { AboutComponent } from './about/about.component';
     
     EmitcomService,
     MatIconRegistry,
-    AuthGuard
+    AuthGuard,
+    RoleGuard
   ],
   bootstrap: [AppComponent]
 })
